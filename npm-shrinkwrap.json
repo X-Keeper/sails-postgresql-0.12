@@ -113,9 +113,11 @@
       "resolved": "https://registry.npmjs.org/waterline-errors/-/waterline-errors-0.10.1.tgz"
     },
     "waterline-sequel": {
-      "version": "0.6.4",
-      "from": "waterline-sequel@0.6.4",
-      "resolved": "https://registry.npmjs.org/waterline-sequel/-/waterline-sequel-0.6.4.tgz"
+      "version": "git+https://github.com/X-Keeper/waterline-sequel-0.6.4.git",
+      "from": "git+https://github.com/X-Keeper/waterline-sequel-0.6.4.git",
+      "requires": {
+        "lodash": "3.10.1"
+      }
     }
   }
 }
