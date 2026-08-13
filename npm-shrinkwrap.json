@@ -113,8 +113,8 @@
       "resolved": "https://registry.npmjs.org/waterline-errors/-/waterline-errors-0.10.1.tgz"
     },
     "waterline-sequel": {
-      "version": "git+https://github.com/X-Keeper/waterline-sequel-0.6.4.git",
-      "from": "git+https://github.com/X-Keeper/waterline-sequel-0.6.4.git",
+      "version": "git+https://github.com/X-Keeper/waterline-sequel-0.6.4.git#e72fe726ddd64d222ac089c2bc448b902ed99b19",
+      "from": "git+https://github.com/X-Keeper/waterline-sequel-0.6.4.git#e72fe726ddd64d222ac089c2bc448b902ed99b19",
       "requires": {
         "lodash": "3.10.1"
       }

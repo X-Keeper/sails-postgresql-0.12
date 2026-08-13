@@ -20,7 +20,7 @@
     "pg": "4.5.5",
     "waterline-cursor": "0.0.7",
     "waterline-errors": "0.10.1",
-    "waterline-sequel": "git+https://github.com/X-Keeper/waterline-sequel-0.6.4.git"
+    "waterline-sequel": "git+https://github.com/X-Keeper/waterline-sequel-0.6.4.git#e72fe726ddd64d222ac089c2bc448b902ed99b19"
   },
   "devDependencies": {
     "mocha": "2.5.3",
