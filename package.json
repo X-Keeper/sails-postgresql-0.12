@@ -17,7 +17,7 @@
   "dependencies": {
     "async": "1.5.2",
     "lodash": "3.10.1",
-    "pg": "4.5.5",
+    "pg": "8.7.1",
     "waterline-cursor": "0.0.7",
     "waterline-errors": "0.10.1",
     "waterline-sequel": "git+https://github.com/X-Keeper/waterline-sequel-0.6.4.git#e72fe726ddd64d222ac089c2bc448b902ed99b19"

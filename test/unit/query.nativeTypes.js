@@ -87,16 +87,16 @@ describe('native database types', function() {
 });
 
 describe('native database types query integration', function() {
-  var originalConnect;
+  var originalPool;
   var capturedQuery;
   var capturedValues;
   var connectionName = 'native-types-query-test';
   var uuidV7 = '01890f9e-7b2c-7d3e-8f4a-123456789abc';
 
   before(function(done) {
-    originalConnect = pg.connect;
+    originalPool = pg.Pool;
 
-    pg.connect = function(config, cb) {
+    pg.Pool = function() {
       var client = {
         query: function(query, values, queryCb) {
           if(typeof values === 'function') {
@@ -137,7 +137,15 @@ describe('native database types query integration', function() {
         }
       };
 
-      cb(null, client, function() {});
+      return {
+        on: function() {},
+        connect: function(cb) {
+          cb(null, client, function() {});
+        },
+        end: function(cb) {
+          cb();
+        }
+      };
     };
 
     var definition = {
@@ -171,8 +179,10 @@ describe('native database types query integration', function() {
   });
 
   after(function(done) {
-    pg.connect = originalConnect;
-    adapter.teardown(connectionName, done);
+    adapter.teardown(connectionName, function() {
+      pg.Pool = originalPool;
+      done();
+    });
   });
 
   it('builds UUID criteria from describe metadata instead of value shape', function(done) {

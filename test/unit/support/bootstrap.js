@@ -98,7 +98,11 @@ Support.registerConnection = function(tableNames, cb) {
 
 // Remove a table
 Support.Teardown = function(tableName, cb) {
-  pg.connect(Support.Config, function(err, client, done) {
+  connectClient(function(err, client, done) {
+    if(err) {
+      return cb(err);
+    }
+
     dropTable(tableName, client, function(err) {
       if(err) {
         done();
@@ -116,12 +120,16 @@ Support.Teardown = function(tableName, cb) {
 
 // Return a client used for testing
 Support.Client = function(cb) {
-  pg.connect(Support.Config, cb);
+  connectClient(cb);
 };
 
 // Seed a record to use for testing
 Support.Seed = function(tableName, cb) {
-  pg.connect(Support.Config, function(err, client, done) {
+  connectClient(function(err, client, done) {
+    if(err) {
+      return cb(err);
+    }
+
     createRecord(tableName, client, function(err) {
       if(err) {
         done();
@@ -133,6 +141,20 @@ Support.Seed = function(tableName, cb) {
     });
   });
 };
+
+function connectClient(cb) {
+  var client = new pg.Client(Support.Config);
+
+  client.connect(function(err) {
+    if(err) {
+      return cb(err);
+    }
+
+    cb(null, client, function() {
+      client.end(function() {});
+    });
+  });
+}
 
 function dropTable(table, client, cb) {
   table = '"' + table + '"';
